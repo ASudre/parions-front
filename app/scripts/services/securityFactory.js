@@ -16,6 +16,12 @@
  				method : 'POST',
  				url : serverUrl + '/security/signIn'
  			}
- 		})
+ 		}),
+ 		'resourceConnectedUser' : $resource(serverUrl + '/security/getConnectedUser',{},{
+ 			getConnectedUser : {
+ 				method : 'GET',
+ 				url : serverUrl + '/security/getConnectedUser'
+ 			}
+ 		}),
  	};
 }]);

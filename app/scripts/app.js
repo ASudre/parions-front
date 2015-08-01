@@ -16,13 +16,37 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(['$routeProvider',function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'loginController'
       })
-      .otherwise({
-        redirectTo: '/'
+      .when('/accueil', {
+        templateUrl: 'views/accueil.html',
+        controller: 'accueilController',
+        resolve:{
+          connectedUser:['securityFactory',function(securityFactory){
+            return securityFactory.resourceConnectedUser.getConnectedUser().$promise;
+          }]
+        }
+      });
+  }])
+
+  .run(['$rootScope','securityFactory','$location', function ($rootScope,securityFactory,$location) {
+
+  // On change route
+  $rootScope.$on('$routeChangeStart', function() {
+
+      console.log($rootScope.connectedUser);
+
+      securityFactory.resourceConnectedUser.getConnectedUser(function(user){
+        $rootScope.connectedUser = user ;
+        console.log($rootScope.connectedUser.login);
+        if(!$rootScope.connectedUser.login){
+          $location.path('/login');
+        }
       });
   });
+
+}]);
