@@ -31,22 +31,4 @@ angular
           }]
         }
       });
-  }])
-
-  .run(['$rootScope','securityFactory','$location', function ($rootScope,securityFactory,$location) {
-
-  // On change route
-  $rootScope.$on('$routeChangeStart', function() {
-
-      console.log($rootScope.connectedUser);
-
-      securityFactory.resourceConnectedUser.getConnectedUser(function(user){
-        $rootScope.connectedUser = user ;
-        console.log($rootScope.connectedUser.login);
-        if(!$rootScope.connectedUser.login){
-          $location.path('/login');
-        }
-      });
-  });
-
-}]);
+  }]);
