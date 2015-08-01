@@ -118,6 +118,18 @@ module.exports = function (grunt) {
       }
     },
 
+     // NG Constants according to environment
+    ngconstant: {
+      options: {
+        name: 'parionsApp',
+        dest: '<%= yeoman.app %>/scripts/config.js',
+        deps: false,
+        constants: {
+          serverUrl : 'http://localhost:4444'
+        }
+      }
+    },
+
     // Make sure code styles are up to par and there are no obvious mistakes
     jshint: {
       options: {

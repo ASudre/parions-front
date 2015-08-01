@@ -7,8 +7,8 @@
  * # securityFactory
  * Factory in the frontApp.
  */
- angular.module('frontApp')
- 	.factory('parionsApp', ['$resource','serverUrl', function ($resource, serverUrl) {
+ angular.module('parionsApp')
+ 	.factory('securityFactory', ['$resource','serverUrl', function ($resource, serverUrl) {
 
  	return {
  		'resourceSignIn' :  $resource(serverUrl + '/security/signIn',{}, {
