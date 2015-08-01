@@ -5,6 +5,7 @@ angular.module('parionsApp')
 
 	$scope.login = function(){
 		securityFactory.resourceSignIn.signIn($scope.user,function(user){
+			console.log(user);
 			$rootScope.connectedUser = user ; 
 			$location.path('/accueil');
 		});

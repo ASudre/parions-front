@@ -18,7 +18,7 @@ angular
   ])
   .config(['$routeProvider',function ($routeProvider) {
     $routeProvider
-      .when('/login', {
+      .when('/', {
         templateUrl: 'views/login.html',
         controller: 'loginController'
       })
