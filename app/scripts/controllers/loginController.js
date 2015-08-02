@@ -1,12 +1,10 @@
 'use strict';
 
 angular.module('parionsApp')
-  .controller('loginController',[ '$scope','securityFactory','$location','$rootScope', function ($scope,securityFactory,$location,$rootScope) {
+  .controller('loginController',[ '$scope','securityFactory','$location', function ($scope,securityFactory,$location) {
 
 	$scope.login = function(){
-		securityFactory.resourceSignIn.signIn($scope.user,function(user){
-			console.log(user);
-			$rootScope.connectedUser = user ; 
+		securityFactory.resourceSignIn.signIn($scope.user,function(){
 			$location.path('/accueil');
 		});
 	};

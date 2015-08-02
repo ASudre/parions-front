@@ -16,7 +16,11 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(['$routeProvider',function ($routeProvider) {
+  .config(['$routeProvider','$httpProvider',function ($routeProvider,$httpProvider) {
+    
+    $httpProvider.defaults.withCredentials = true;
+    $httpProvider.defaults.headers.common['Cache-Control'] = 'no-cache';
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/login.html',
