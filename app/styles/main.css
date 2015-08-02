@@ -1,23 +1,69 @@
+/*  
+-------------------------------
+    Palette de couleurs
+-------------------------------
+*/ 
+.primaryBackgroundColor {
+  background : #16a085 !important;
+}
+
+.primaryColor {
+ color : #16a085 !important; 
+}
+
+/*  
+-------------------------------
+    CSS général
+-------------------------------
+*/
 body {
   margin: 0;
   min-height: 100%;
 }
 
-/* Login */
+input:focus {
+    border-color:#16a085 !important;
+    box-shadow:0 0 10px #16a085 !important;
+}
+
+/*  
+-------------------------------
+    Login 
+-------------------------------
+*/ 
+
 .loginBox{
   position: relative;
   top: 50%;
-  margin-left: 40%;
-  margin-right:40%; 
   transform: translateY(150%);
 }
 
-/* Palette de couleurs */
-.dark-primary-color    { background: #512DA8; }
-.default-primary-color { background: #673AB7; }
-.light-primary-color   { background: #D1C4E9; }
-.text-primary-color    { color: #FFFFFF; }
-.accent-color          { background: #FF5252; }
-.primary-text-color    { color: #212121; }
-.secondary-text-color  { color: #727272; }
-.divider-color         { border-color: #B6B6B6; }
+.loginBoxContent{
+  background-color: #edeff1;
+  border-radius: 10px;
+  padding:35px;
+}
+
+.boutonValiderLogin{
+  color:white !important;
+  font-weight: bold !important;
+}
+
+.loginIcon{
+    position: absolute;
+    top: 45px;
+    right: 50px;
+    font-size: 18px;
+    color: #bfc9ca;
+}
+
+.passwordIcon{
+    position: absolute;
+    top: 93px;
+    right: 52px;
+    font-size: 18px;
+    color: #bfc9ca;
+}
+
+.imageLogin {
+}
