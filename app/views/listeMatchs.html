@@ -1,0 +1,87 @@
+<div ng-include="components/top_nav"></div>
+
+<div class="container-fluid" ng-controller="misesController">
+  <div class="row">
+
+	
+	<div ng-include="components/left_nav"></div>
+
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <h1 class="page-header">Liste des matchs</h1>
+
+      matchs : {{ listeMatchs }}
+
+      <h2 class="sub-header">Non joués</h2>
+      <div class="table-responsive">
+        <table class="table table-striped listeMatchs">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Date</th>
+              <th>Match</th>
+              <th>Cotes</th>
+              <th>Paris effectués</th>
+              <th colspan="2">Misons</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          	<tr ng-repeat="match in listeMatchs" id="{{ match.idMatch }}">
+				<td>{{ $index + 1 }}</td>
+				<td>
+					{{ match.date | date:'dd/MM/yyyy à H:mm' }}
+				</td>
+				<td>
+					{{ match.equipe1 }} - 
+					{{ match.equipe2 }}
+				</td>
+				<td>
+					<span ng-bind="calculeCote( $index, 'equipe1' ) | number:2"></span> / <span ng-bind="calculeCote( $index, 'nul' ) | number:2"></span> / <span ng-bind="calculeCote( $index, 'equipe2' ) | number:2"></span>
+				</td>
+				<td>
+					<div ng-if="match.misesUtilisateur.length">
+						<select name="mises" ng-model="pariAffiche" ng-options="(mises.equipe + ' - ' + mises.valeurMise + ' - ' + (mises.date | date:'dd/MM/yyyy')) group by mises.equipe for mises in match.misesUtilisateur track by date">
+						</select>
+					</div>
+					<div ng-if="!match.misesUtilisateur.length">
+						<i>Aucun pari</i>
+					</div>
+				</td>
+				<td>
+					<div ng-show="match.afficherInput" class="ng-hide">
+						<select id="equipe" name="equipe" ng-model="match.nouvelleMiseEquipe">
+							<option value="" selected></option>
+							<option value="{{ match.equipe1 }}">{{ match.equipe1 }}</option>
+							<option value="Nul">Nul</option>
+							<option value="{{ match.equipe2 }}">{{ match.equipe2 }}</option>
+						</select>
+					</div>
+					<div ng-show="!match.afficherInput" class="ng-hide">
+						Gain : {{ match.gain }}
+					</div>
+				</td>
+				<td>
+					<div ng-show="match.afficherInput" class="ng-hide">
+						<input name="mise" type="number" min="0" value="" ng-model="match.nouvelleMiseValeur" />
+					</div>
+				</td>
+				<td>
+					<div ng-show="match.afficherInput" class="ng-hide">
+						<button ng-click="saveBet( $index, match.idMatch )" name="valider">OK</button>
+					</div>
+				</td>
+          	</tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+	//var listMatchs = {{ JSON.stringify( listeMatchs ) }};
+	//var sommeMisesUtilisateur = <%- sommeMisesUtilisateur %>;
+	//var cagnotte = <%- user.local.cagnotte %>;
+</script>

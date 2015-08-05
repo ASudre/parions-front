@@ -34,5 +34,14 @@ angular
             return securityFactory.resourceConnectedUser.getConnectedUser().$promise;
           }]
         }
+      })
+      .when('/mises', {
+        templateUrl: 'views/listeMatchs.html',
+        controller: 'misesController',
+        resolve:{
+          mises:['misesFactory',function(misesFactory){
+            return misesFactory.resourceMises.mises().$promise;
+          }]
+        }
       });
   }]);
