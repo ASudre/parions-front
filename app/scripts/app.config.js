@@ -1,6 +1,10 @@
 'use strict';
 
 (function(){
+	
+	angular.module('parionsApp').config(config);
+	config.$inject = ['$routeProvider','$httpProvider'];
+
     function config($routeProvider,$httpProvider) {
 
    		$httpProvider.defaults.withCredentials = true;
@@ -31,6 +35,5 @@
 		});
 	}
 
-	angular.module('parionsApp').config(config);
-	config.$inject = ['$routeProvider','$httpProvider'];
+	
 })();
